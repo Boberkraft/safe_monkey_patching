@@ -25,3 +25,4 @@ ActiveJob::Core::ClassMethods:
   deserialize:
     sha1: c29634da4f1731775868a6eba5efc837dd711a54
 ```
+where `sha1` is hash of the orignal `#deserialize`
