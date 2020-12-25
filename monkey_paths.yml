@@ -1,0 +1,19 @@
+---
+Papercrop::ModelExtension::ClassMethods:
+  crop_attached_file:
+    sha1: 3eab848b09eba55b58c916184761fbdffc8cc761
+Delayed::Worker:
+  max_run_time:
+    sha1: 3742fbfbbb6e5152b248e1f41ecc6baa4b544ecf
+Globalize::ActiveRecord::AdapterDirty:
+  _reset_attribute:
+    sha1: 5f27eb88383761a4caffa92fc3c5e1dca07c611c
+Cocoon::ViewHelpers:
+  create_object:
+    sha1: 87fda057cdba7fd39395fa93b0a1ab6cb6167cd9
+ActiveRecord::Enum:
+  enum:
+    sha1: 24a3b535f1395d56b463aef4485092ec73a84f35
+ActiveJob::Core::ClassMethods:
+  deserialize:
+    sha1: c29634da4f1731775868a6eba5efc837dd711a54
