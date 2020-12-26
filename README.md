@@ -7,7 +7,7 @@ module ActiveJob
     attr_accessor :attempt_number
 
     class << self
-      monkey_path
+      monkey_path # <- o to tutaj
       def deserialize(job_data)
         bla
         ...
