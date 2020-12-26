@@ -18,7 +18,7 @@ module ActiveJob
 end
 ````
 
-metoda `#monkey_path` generuje hash kodu źródłowego `#deserialize` (oryginalnej)
+metoda `#monkey_path` generuje hash kodu źródłowego `#deserialize` (tej oryginalnej)
 ```yml
 ---
 ActiveJob::Core::ClassMethods:
