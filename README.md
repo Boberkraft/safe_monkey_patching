@@ -25,4 +25,4 @@ ActiveJob::Core::ClassMethods:
   deserialize:
     sha1: c29634da4f1731775868a6eba5efc837dd711a54
 ```
-a więc, gdy podbijemy railsy, i zmienie się kod źródłowy funkcji, to zobaczymy zmianę hasha w `gif diff` 
+a więc, gdy podbijemy railsy, i zmieni się kod źródłowy, to zobaczymy zmianę hasha w `gif diff` 
