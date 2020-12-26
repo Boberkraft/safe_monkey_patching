@@ -1,6 +1,6 @@
 # safe_monkey_patching
 
-Przykład
+**Przykład**
 ```ruby
 module ActiveJob
   class Base
@@ -18,7 +18,7 @@ module ActiveJob
 end
 ````
 
-metoda `#monkey_path` generuje hash kodu źródłowego `#deserialize` (tej oryginalnej)
+metoda `#monkey_path` generuje hash kodu źródłowego `#deserialize` (tej oryginalnej) i zapisze go do pliku
 ```yml
 ---
 ActiveJob::Core::ClassMethods:
