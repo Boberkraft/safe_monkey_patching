@@ -4,14 +4,11 @@
 ```ruby
 module ActiveJob
   class Base
-    attr_accessor :attempt_number
-
     class << self
-      monkey_path #                 <- o to tutaj
+      monkey_path :deserialize
+
       def deserialize(job_data)
-        bla
         ...
-        bla
       end
     end
   end
