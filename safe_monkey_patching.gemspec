@@ -9,4 +9,6 @@ Gem::Specification.new do |s|
   s.files         = Dir.glob('{lib}/**/*') + %w[README.md]
   s.require_path  = 'lib'
   s.license       = 'MIT'
+
+  s.add_dependency 'diffy'
 end

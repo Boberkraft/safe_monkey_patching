@@ -5,7 +5,7 @@
 module ActiveJob
   class Base
     class << self
-      monkey_path :deserialize
+      monkey_patch :deserialize
 
       def deserialize(job_data)
         ...
@@ -15,7 +15,7 @@ module ActiveJob
 end
 ````
 
-metoda `#monkey_path` generuje hash kodu źródłowego `#deserialize` (tej oryginalnej) i zapisze go do pliku
+metoda `#monkey_patch` generuje hash kodu źródłowego `#deserialize` (tej oryginalnej) i zapisze go do pliku
 ```yml
 ---
 ActiveJob::Core::ClassMethods:
@@ -27,7 +27,7 @@ a więc, gdy podbijemy railsy i zmieni się kod źródłowy, to `gif diff` nam o
 
 ```diff
 
-diff --git a/monkey_paths.yml b/monkey_paths.yml
+diff --git a/monkey_patchs.yml b/monkey_patchs.yml
 
  ActiveJob::Core::ClassMethods:
    deserialize:

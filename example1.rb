@@ -3,7 +3,7 @@ module ActiveJob
     attr_accessor :attempt_number
 
     class << self
-      monkey_path instance_method(:deserialize)
+      monkey_patch :deserialize
       def deserialize(job_data)
         job = super
         job.send(:attempt_number=, (job_data['attempt_number'] || 0))
