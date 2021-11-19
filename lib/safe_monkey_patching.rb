@@ -22,9 +22,11 @@ module SafeMonkeyPatching
     where = ENV.fetch('SAFE_MONKEY_PATCHING_STORE_PATH', '.')
     ERROR_LOCATION = File.join(where, "WRONG_MONKEY_PATCHES.txt")
 
-    begin
-      File.delete(ERROR_LOCATION)
-    rescue Errno::ENOENT
+    unless ENV['GITHUB_SHA']
+      begin
+        File.delete(ERROR_LOCATION)
+      rescue Errno::ENOENT
+      end
     end
 
     def monkey_patch(method_sym)
@@ -34,10 +36,9 @@ module SafeMonkeyPatching
       end&.full_gem_path || Rails.root
 
       SafeMonkeyPatching::Behavior.add_gem_with_patch(gem_path)
-      # return unless Rails.env.test?
+      return unless Rails.env.test?
 
       method = instance_method(method_sym)
-      # binding.pry;1
       database = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, 'monkey_patches-new.yml'))
 
       method_entry = { method.owner.to_s => { method.name.to_s =>
