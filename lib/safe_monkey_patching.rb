@@ -30,13 +30,14 @@ module SafeMonkeyPatching
     end
 
     def monkey_patch(method_sym)
+      return unless Rails.env.test?
+
       caller = caller_locations.first.path
       gem_path = Gem::Specification.find do |spec|
         File.fnmatch(File.join(spec.full_gem_path, '*'), caller)
       end&.full_gem_path || Rails.root
 
       SafeMonkeyPatching::Behavior.add_gem_with_patch(gem_path)
-      return unless Rails.env.test?
 
       method = instance_method(method_sym)
       database = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, 'monkey_patches-new.yml'))
@@ -57,7 +58,7 @@ class Object
 end
 
 at_exit do
-  return unless Rails.env.test?
+  break unless Rails.env.test?
   SafeMonkeyPatching::Behavior.gems_with_patches.each do |gem_path|
     old_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-old.yml")).to_yaml
     new_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-new.yml")).to_yaml
