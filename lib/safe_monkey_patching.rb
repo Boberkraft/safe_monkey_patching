@@ -60,8 +60,8 @@ end
 at_exit do
   break unless Rails.env.test?
   SafeMonkeyPatching::Behavior.gems_with_patches.each do |gem_path|
-    old_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-old.yml").sort.to_h).to_yaml
-    new_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-new.yml").sort.to_h).to_yaml
+    old_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-old.yml")).sort.to_h.to_yaml
+    new_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-new.yml")).sort.to_h.to_yaml
 
     File.write(File.join(gem_path, "monkey_patches-old.yml"), old_patches)
     File.write(File.join(gem_path, "monkey_patches-new.yml"), new_patches)
@@ -72,7 +72,7 @@ at_exit do
     diff = Diffy::Diff.new(old_patches, new_patches)
 
     if diff.to_s.size.positive?
-      $stderr.puts 'Wrong monkeypatches!'.red.bold
+      $stderr.puts "Wrong monkeypatches! \n But if they are correct, then just commit 'monkey_patches-old.yml'".red.bold
       $stderr.puts gem_path
       $stderr.puts diff.to_s(:color)
 
