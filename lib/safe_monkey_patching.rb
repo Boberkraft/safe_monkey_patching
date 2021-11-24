@@ -63,6 +63,9 @@ at_exit do
     old_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-old.yml").sort.to_h).to_yaml
     new_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-new.yml").sort.to_h).to_yaml
 
+    File.write(File.join(gem_path, "monkey_patches-old.yml"), old_patches)
+    File.write(File.join(gem_path, "monkey_patches-new.yml"), new_patches)
+
     FileUtils.mv(File.join(gem_path, "monkey_patches-new.yml"),
                  File.join(gem_path, "monkey_patches-old.yml"))
 
