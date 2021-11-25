@@ -27,7 +27,7 @@ a więc, gdy podbijemy railsy i zmieni się kod źródłowy, to `gif diff` nam o
 
 ```diff
 
-diff --git a/monkey_patchs.yml b/monkey_patchs.yml
+diff --git a/monkey_patches-old.yml b/monkey_patches-old.yml
 
  ActiveJob::Core::ClassMethods:
    deserialize:
@@ -35,5 +35,9 @@ diff --git a/monkey_patchs.yml b/monkey_patchs.yml
 +    sha1: 131d3acf24768b30a3ccb1052591b1cdb603f0cd
 ```
 
-Dzięki temu będziemy wiedzieli, że trzeba tam zajrzeć 🥳
+Plus dotatkowy plik `WRONG_MONKEY_PATCHES.txt` na CI, który pokazuje niekompatybilności z gemów
+
+Dzięki temu będziemy wiedzieli do jakich metod trzeba będzie zajrzeć 🥳
+
+Aby zaktualizować monkey_patche, to trzeba po prostu zcomitować ten plik `monkey_patches-old.yml` i będzie git.
 
