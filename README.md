@@ -35,7 +35,7 @@ diff --git a/monkey_patches-old.yml b/monkey_patches-old.yml
 +    sha1: 131d3acf24768b30a3ccb1052591b1cdb603f0cd
 ```
 
-Plus dotatkowy plik `WRONG_MONKEY_PATCHES.txt` na CI, który pokazuje niekompatybilności z gemów
+Również pojawi się plik `WRONG_MONKEY_PATCHES.txt`, który pokazuje niekompatybilności z gemów.
 
 Dzięki temu będziemy wiedzieli do jakich metod trzeba będzie zajrzeć 🥳
 
