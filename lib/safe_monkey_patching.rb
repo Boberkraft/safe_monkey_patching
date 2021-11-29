@@ -58,7 +58,6 @@ class Object
 end
 
 at_exit do
-  break unless Rails.env.test?
   SafeMonkeyPatching::Behavior.gems_with_patches.each do |gem_path|
     old_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-old.yml")).sort.to_h.to_yaml
     new_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-new.yml")).sort.to_h.to_yaml
