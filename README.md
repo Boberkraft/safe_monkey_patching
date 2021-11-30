@@ -8,7 +8,7 @@ module ActiveJob
       monkey_patch :deserialize
 
       def deserialize(job_data)
-        ...
+        # ...
       end
     end
   end
