@@ -35,9 +35,11 @@ diff --git a/monkey_patches-old.yml b/monkey_patches-old.yml
 +    sha1: 131d3acf24768b30a3ccb1052591b1cdb603f0cd
 ```
 
-Również pojawi się plik `WRONG_MONKEY_PATCHES.txt`, który pokazuje niekompatybilności z gemów.
+Również pokażą się pliki `monkey_patches-old.yml` i `WRONG_MONKEY_PATCHES.txt`, który pokazuje niekompatybilności z gemów.
 
-Dzięki temu będziemy wiedzieli do jakich metod trzeba będzie zajrzeć 🥳
+Aby zaktualizować łatki, to trzeba zcomitować `monkey_patches-old.yml` i będzie :ok:.
 
-Aby zaktualizować monkey_patche, to trzeba po prostu zcomitować ten plik `monkey_patches-old.yml` i będzie git.
+Dzięki temu gemu nie będzie trzeba pamiętać o przejrzeniu patchów przy podbijaniu gemów 🥳
+
+
 
