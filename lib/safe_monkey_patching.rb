@@ -58,27 +58,41 @@ class Object
 end
 
 at_exit do
+  generate_file = ENV.key?('MONKEY') || ENV.key?('GITHUB_SHA')
+  written = false
+
   SafeMonkeyPatching::Behavior.gems_with_patches.each do |gem_path|
     old_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-old.yml")).sort.to_h.to_yaml
     new_patches = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, "monkey_patches-new.yml")).sort.to_h.to_yaml
 
-    File.write(File.join(gem_path, "monkey_patches-old.yml"), old_patches)
-    File.write(File.join(gem_path, "monkey_patches-new.yml"), new_patches)
+    if generate_file
+      File.write(File.join(gem_path, "monkey_patches-old.yml"), old_patches)
+      File.write(File.join(gem_path, "monkey_patches-new.yml"), new_patches)
 
-    FileUtils.mv(File.join(gem_path, "monkey_patches-new.yml"),
-                 File.join(gem_path, "monkey_patches-old.yml"))
+      FileUtils.mv(File.join(gem_path, "monkey_patches-new.yml"),
+                   File.join(gem_path, "monkey_patches-old.yml"))
+    end
 
     diff = Diffy::Diff.new(old_patches, new_patches)
 
     if diff.to_s.size.positive?
-      $stderr.puts "Wrong monkeypatches! \n But if they are correct, then just commit 'monkey_patches-old.yml'".red.bold
-      $stderr.puts gem_path
-      $stderr.puts diff.to_s(:color)
+      unless written
+        written = true
+        $stderr.puts
+        $stderr.puts "Wrong monkey_patches! Did you changed something?".red.bold
+        $stderr.puts "If you want see and correct them then:"
+        $stderr.puts "#{"-".blue.bold} Rerun rspec with variable #{ "MONKEY=1".green }" unless generate_file
+        $stderr.puts "#{"-".blue.bold} Commit generated file #{ "monkey_patches-old.yml".green }"
+      end
 
-      open(ERROR_LOCATION, 'a') do |f|
-        f.puts("\n")
-        f.puts(gem_path)
-        f.puts(diff.to_s)
+      if generate_file
+        $stderr.puts gem_path
+        $stderr.puts diff.to_s(:color)
+        open(ERROR_LOCATION, 'a') do |f|
+          f.puts("\n")
+          f.puts(gem_path)
+          f.puts(diff.to_s)
+        end
       end
     end
   end
