@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'safe_monkey_patching'
-  s.version       = '0.0.9'
+  s.version       = '0.0.10'
   s.date          = '2020-12-30'
   s.summary       = 'Safe monkey patching'
   s.description   = 'Safe monkey patching'
