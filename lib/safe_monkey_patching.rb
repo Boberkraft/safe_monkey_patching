@@ -80,7 +80,7 @@ at_exit do
         written = true
         $stderr.puts
         $stderr.puts "Wrong monkey_patches! Did you changed something?".red.bold
-        $stderr.puts "If you want see and correct them then:"
+        $stderr.puts "to correct them:"
         $stderr.puts "#{"-".blue.bold} Rerun rspec with variable #{ "MONKEY=1".green }" unless generate_file
         $stderr.puts "#{"-".blue.bold} Commit generated file #{ "monkey_patches-old.yml".green }"
       end
