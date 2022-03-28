@@ -43,7 +43,9 @@ module SafeMonkeyPatching
       database = SafeMonkeyPatching::Behavior.load_store(File.join(gem_path, 'monkey_patches-new.yml'))
 
       method_entry = { method.owner.to_s => { method.name.to_s =>
-                                                { 'sha1' => Digest::SHA1.hexdigest(method.source) } } }
+                                                { 'sha1' => Digest::SHA1.hexdigest(method.source),
+                                                  'to_s' => method.to_s
+                                                } } }
 
       new_database = database.deep_merge(method_entry)
       File.open(File.join(gem_path, 'monkey_patches-new.yml'), 'w') do |f|
